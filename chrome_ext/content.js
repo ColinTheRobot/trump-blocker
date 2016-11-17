@@ -43,8 +43,9 @@ for (let i = 0; i < images.length; i++) {
         var images = document.getElementsByTagName('IMG');
         for (var i = 0; i < images.length; ++i) {
           if (images[i].src == el || images[i].getAttribute('data-baseurl') == el) {
-            var width = images[i].getAttribute('width') || images[i].getAttribute('data-width') || 75;
-            var height = images[i].getAttribute('height') || images[i].getAttribute('data-height') || 75;
+            var clientRect = images[i].getBoundingClientRect()
+            var width = Math.ceil(clientRect.width)
+            var height = Math.ceil(clientRect.height)
             images[i].setAttribute('src',`http://placekitten.com/${width}/${height}`);
           }
         }
@@ -55,16 +56,16 @@ for (let i = 0; i < images.length; i++) {
         var images = document.getElementsByTagName('IMG');
         for (var i = 0; i < images.length; ++i) {
           if (images[i].src == el.url || images[i].getAttribute('data-baseurl') == el.url) {
-            console.log('TRUEEEE', el.url, images[i])
-            images[i].setAttribute('src','http://placekitten.com/50/50');
+            var width = Math.ceil(clientRect.width)
+            var height = Math.ceil(clientRect.height)
+            images[i].setAttribute('src',`http://placekitten.com/${width}/${height}`);
           }
         }
       })
     }
   };
 
-  var url = 'https://aqueous-sands-87859.herokuapp.com/;'
 
-  xhr.open('POST', 'https://aqueous-sands-87859.herokuapp.com/', true);
+  xhr.open('POST', 'https://aqueous-sands-87859.herokuapp.com/photorec', true);
   xhr.setRequestHeader("Content-type", "application/json");
   xhr.send(JSON.stringify({pictures: imageUrls}));

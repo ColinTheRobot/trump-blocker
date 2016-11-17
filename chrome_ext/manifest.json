@@ -3,7 +3,7 @@
 
   "name": "Trump-vision",
   "description": "This extension will replace all trump photos with cat photos",
-  "version": "1.0.2",
+  "version": "1.0.4",
 
   "browser_action": {
    "default_icon": "info.png",
