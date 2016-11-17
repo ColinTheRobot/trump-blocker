@@ -1,0 +1,28 @@
+{
+  "name": "trump_vision",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ColinTheRobot/trump-vision.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ColinTheRobot/trump-vision/issues"
+  },
+  "homepage": "https://github.com/ColinTheRobot/trump-vision#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "dotenv": "^2.0.0",
+    "express": "^4.14.0",
+    "morgan": "^1.7.0",
+    "node-cloud-vision-api": "^0.2.0",
+    "pryjs": "^1.0.3",
+    "request": "^2.78.0"
+  }
+}
