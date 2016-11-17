@@ -61,6 +61,8 @@ for (let i = 0; i < images.length; i++) {
     }
   };
 
-  xhr.open('POST', 'http://localhost:3001/photorec', true);
+  var url = 'https://aqueous-sands-87859.herokuapp.com/;'
+
+  xhr.open('POST', 'https://aqueous-sands-87859.herokuapp.com/', true);
   xhr.setRequestHeader("Content-type", "application/json");
   xhr.send(JSON.stringify({pictures: imageUrls}));

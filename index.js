@@ -1,6 +1,7 @@
 pry = require('pryjs')
 'use strict';
 const express = require('express');
+const cors = require('cors')
 const app = express();
 const request = require('request');
 const morgan = require('morgan');
@@ -8,6 +9,7 @@ const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 const testData = require('./test.js')
 dotenv.load();
+
 
 
 app.use(morgan('short'));
@@ -122,4 +124,4 @@ var eliminateTrump = function(images) {
   return filteredImages
 }
 
-app.listen(3001);
+app.listen(process.env.PORT || 3001);

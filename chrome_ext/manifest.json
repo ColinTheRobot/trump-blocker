@@ -11,7 +11,8 @@
   },
   "permissions": [
     "activeTab",
-    "http://localhost:3001"
+    "http://localhost:3001",
+    "*://aqueous-sands-87859.herokuapp.com/*"
   ],
  "content_scripts": [
    {
