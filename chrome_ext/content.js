@@ -43,7 +43,9 @@ for (let i = 0; i < images.length; i++) {
         var images = document.getElementsByTagName('IMG');
         for (var i = 0; i < images.length; ++i) {
           if (images[i].src == el || images[i].getAttribute('data-baseurl') == el) {
-            images[i].setAttribute('src','http://placekitten.com/50/50');
+            var width = images[i].getAttribute('width') || images[i].getAttribute('data-width') || 75;
+            var height = images[i].getAttribute('height') || images[i].getAttribute('data-height') || 75;
+            images[i].setAttribute('src',`http://placekitten.com/${width}/${height}`);
           }
         }
       })
