@@ -2,8 +2,8 @@
   "manifest_version": 2,
 
   "name": "Trump-Blocker",
-  "description": "This extension will replace all trump photos with cat photos",
-  "version": "1.0.4",
+  "description": "This extension replaces Trumps face with cats",
+  "version": "1.0.5",
 
   "browser_action": {
    "default_icon": "info.png",
@@ -18,6 +18,11 @@
    {
      "matches": [
        "<all_urls>"
+     ],
+     "exclude_matches": [
+       "*://google.com/*",
+       "*://twitter.com/*",
+       "*://facebook.com/*"
      ],
      "js": ["content.js"]
    }
