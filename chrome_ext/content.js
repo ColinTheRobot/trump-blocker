@@ -1,71 +1,42 @@
-var images = document.getElementsByTagName('IMG');
-var imageUrls= [];
-
 // GET ALL IMAGES FROM DOM
-for (let i = 0; i < images.length; i++) {
-  if (images[i].src) {
-    imageUrls.push(images[i].src)
-  } else {
-    // TO ACCOUNT FOR OTHER IMAGE ATTR (data-baseurl) at latimes
-    imageUrls.push(images[i].getAttribute('data-baseurl'))
+var images = document.getElementsByTagName('IMG');
+
+function eliminateTrump(images) {
+  var filteredImages = []
+
+  for (let i = 0; i < images.length; i++ ) {
+    if (isTrumpish(images[i])) {
+      filteredImages.push(images[i].src)
+    }
   }
+
+  filteredImages.filter(function(el) {
+    if (el !== undefined) {
+      return el
+    }
+  })
+  console.log('FILTERED', filteredImages.length)
+  return filteredImages
 }
 
-// TEST REQUEST TO NOT WRECK THE API THROTTLING
-
-// var xhr = new XMLHttpRequest();
-// xhr.onload = function (e) {
-//   let data = JSON.parse(e.target.response)
-//   data.forEach(function(el){
-//    console.log('hey')
-  // var images = document.getElementsByTagName('IMG');
-  // for (var i = 0; i < images.length; ++i) {
-  //   if (images[i].src == el.url || images[i].getAttribute('data-baseurl') == el.url) {
-  //     console.log('TRUEEEE', el.url, images[i])
-  //     images[i].setAttribute('src','http://placekitten.com/50/50');
-  //   }
-  // }
-//   })
-//
-// };
-// xhr.open('POST', 'http://localhost:3001/test', true);
-// xhr.setRequestHeader("Content-type", "application/json");
-//
-// xhr.send(JSON.stringify({pictures: {photos: ['url1', 'url2']}}));
-
-  var xhr = new XMLHttpRequest();
-  xhr.onload = function (e) {
-    let data = JSON.parse(e.target.response)
-
-    // IF THE skybiometry API IS MAXED OUT REPLACE IMAGES THAT CONTAIN TRUMPS NAME
-    if (data.status == 500) {
-      data.photos.forEach(function(el){
-        var images = document.getElementsByTagName('IMG');
-        for (var i = 0; i < images.length; ++i) {
-          if (images[i].src == el || images[i].getAttribute('data-baseurl') == el) {
-            var clientRect = images[i].getBoundingClientRect()
-            var width = Math.ceil(clientRect.width)
-            var height = Math.ceil(clientRect.height)
-            images[i].setAttribute('src',`http://placekitten.com/${width}/${height}`);
-          }
-        }
-      })
-    } else {
-      data.photos.forEach(function(el){
-        console.log('hey')
-        var images = document.getElementsByTagName('IMG');
-        for (var i = 0; i < images.length; ++i) {
-          if (images[i].src == el.url || images[i].getAttribute('data-baseurl') == el.url) {
-            var width = Math.ceil(clientRect.width)
-            var height = Math.ceil(clientRect.height)
-            images[i].setAttribute('src',`http://placekitten.com/${width}/${height}`);
-          }
-        }
-      })
+eliminateTrump(images).forEach(function(el){
+  for (var i = 0; i < images.length; ++i) {
+    if (images[i].src == el || images[i].getAttribute('data-baseurl') == el) {
+      var clientRect = images[i].getBoundingClientRect()
+      var width = Math.ceil(clientRect.width)
+      var height = Math.ceil(clientRect.height)
+      // data-baseurl for LA-TIMEs
+      if (images[i].getAttribute('data-baseurl')) {
+        images[i].setAttribute('data-baseurl',`https://placekitten.com/${width}/${height}`);
+      } else {
+        images[i].setAttribute('src',`https://placekitten.com/${width}/${height}`);
+      }
     }
-  };
+  }
+})
 
-
-  xhr.open('POST', 'https://aqueous-sands-87859.herokuapp.com/photorec', true);
-  xhr.setRequestHeader("Content-type", "application/json");
-  xhr.send(JSON.stringify({pictures: imageUrls}));
+function isTrumpish(el) {
+  if (el.src.match(/trump|pence|bannon|conway/gi) || el.alt.match(/trump|pence|bannon|conway/gi)) {
+    return el
+  }
+}
