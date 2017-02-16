@@ -25,7 +25,7 @@ eliminateTrump(images).forEach(function(el){
       var clientRect = images[i].getBoundingClientRect()
       var width = Math.ceil(clientRect.width)
       var height = Math.ceil(clientRect.height)
-      // data-baseurl for LA-TIMEs
+      // data-baseurl for LATIMES
       if (images[i].getAttribute('data-baseurl')) {
         images[i].setAttribute('data-baseurl',`https://placekitten.com/${width}/${height}`);
       } else {
