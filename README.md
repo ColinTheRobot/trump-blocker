@@ -1,9 +1,13 @@
-# trump-vision
+# trump-blocker
 
 ## To set up for development
 
-Fork and clone the repo
+1. Fork and clone the repo
 
-Go to chrome://extensions. Turn on developer mode. Click `load unpacked extension` and select the `chrome_ext` directory.
+2. Go to chrome://extensions. Turn on developer mode. Click `load unpacked extension` and select the `chrome_ext` directory.
 
-Make sure the express server is running. 
+3. Work off a feature branch of dev 
+
+## Submission
+
+1. Submit a pull request to dev explaining the nature of the code or the added functionality. 
