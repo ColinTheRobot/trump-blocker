@@ -1,5 +1,9 @@
 # trump-blocker
 
+## Installation
+
+https://chrome.google.com/webstore/detail/trump-blocker/cieelbcbbngpkgenpdbligghjlgamlhl
+
 ## To set up for development
 
 1. Fork and clone the repo
